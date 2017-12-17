@@ -66,7 +66,7 @@ class miner
                 {
                     EquihashBTG(username);
                 }
-                usleep(300000000);
+                
             } 
         }
 
@@ -78,6 +78,7 @@ class miner
                 command = strcpy("./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u ",  username);
                 command = strcpy(command, ".OMQL-Miner -p x");
                 system(command);
+                usleep(300000000);
             }
             else
             {
@@ -93,16 +94,15 @@ class miner
             char *command;
             if(checkDir("./ethminer/ethminer"))
             {
-               // command = strcpy("./ethminer/ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O ",  username);
-                //command = strcpy(command, ".OMQL-Miner:x");
-                //system(command);
+                command = strcpy("./ethminer/ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O ",  username);
+                command = strcpy(command, ".OMQL-Miner:x");
+                system(command);
+                usleep(300000000);
             }
             else
             {
                 cout<<"ethminer not found. I'll try to download it... \n";
-                system("git clone https://github.com/ethereum-mining/ethminer.git");
-                system("chmod -R 777 ethminer");
-                system("sudo apt-get install cmake");
+
                 system("./installers/ethminer.sh");
             }            
             
@@ -116,6 +116,7 @@ class miner
                 command = strcpy("./silentarmy/silentarmy --use 0 -c stratum+tcp://europe.equihash-hub.miningpoolhub.com:20595 -u ",  username);
                 command = strcpy(command, ".OMQL-Miner -p x");
                 system(command);
+                usleep(300000000);
             }
             else
             {
