@@ -66,6 +66,10 @@ class miner
                 {
                     EquihashBTG(username);
                 }
+                if(mineThat == "EquihashZEN")
+                {
+                    EquihashZEN(username);
+                }
                 
             } 
         }
