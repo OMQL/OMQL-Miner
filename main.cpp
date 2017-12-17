@@ -216,7 +216,7 @@ class miner
             string data;
             coin coins[37];
             int pointer = 0;
-            int coin_nr;
+            int coin_nr = 0;
             data = buffer;
             while(coin_nr < 37)
             {
