@@ -121,12 +121,26 @@ class miner
             else
             {
                 cout<<"Silentarmy not found. I'll try to download it... \n";
-                system("sudo apt-get install nvidia-opencl-dev nvidia-361");
-                system("git clone https://github.com/mbevand/silentarmy.git");
-                system("chmod -R 777 silentarmy");
                 system("./installers/silentarmy.sh");
             }
 
+        }
+        
+        void EquihashZEN(const char *username)
+        {  
+            char *command;
+            if(checkDir("./silentarmy/silentarmy"))
+            {
+                command = strcpy("./silentarmy/silentarmy --use 0 -c stratum+tcp://europe.equihash-hub.miningpoolhub.com:20594 -u ",  username);
+                command = strcpy(command, ".OMQL-Miner -p x");
+                system(command);
+                usleep(300000000);
+            }
+            else
+            {
+                cout<<"Silentarmy not found. I'll try to download it... \n";
+                system("./installers/silentarmy.sh");
+            }              
         }
 
         bool checkDir(const char* path)
