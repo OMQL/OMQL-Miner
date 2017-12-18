@@ -1,4 +1,17 @@
 # OMQL-Miner
+<h1>Multi pool miner for Linux x64 & NVIDIA</h1>
+<h1>Features:</h1>
+
+- Algorithm switching based on highest profitability on whattomine.com;
+
+- Supported altcoins: ETH, ETC, FTC, BTG, ZEN, ZCL, ZEC, ETN, MONA, EXP, MUSIC;
+
+- Compiling miners from sources for the best performance (if possible);
+
+- 100% open source;
+
+- 2,5% dev fee;
+
 <h1>Installing:</h1>
  <code>git clone https://github.com/OMQL/OMQL-Miner.git</code>
  
