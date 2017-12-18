@@ -22,7 +22,8 @@
 using namespace std;
 static char err_buffer[CURL_ERROR_SIZE];
 char *buffer;
-
+#define  sleep 600000000
+#define fee  120000000
 class coin
 {
     public:
@@ -84,22 +85,22 @@ class miner
                     CryptoNightETN(username);
                 }
                 if(mineThat == "Lyra2REv2MONA")
-{
-Lyra2REv2MONA(username);
-}
-if(mineThat == "EthashEXP")
-{
-EthashEXP(username);
-}
-if(mineThat == "EthashETC")
-{
-EthashETC(username);
-}
-if(mineThat == "EthashMUSIC")
-{
-EthashMUSIC(username);
-}
-              if(mineThat == "CryptoNightXMR")
+                {
+                    Lyra2REv2MONA(username);
+                }
+                if(mineThat == "EthashEXP")
+                {
+                    EthashEXP(username);
+                }
+                if(mineThat == "EthashETC")
+                {
+                    EthashETC(username);
+                }
+                if(mineThat == "EthashMUSIC")
+                {
+                    EthashMUSIC(username);
+                }
+                if(mineThat == "CryptoNightXMR")
                 {
                     CryptoNightXMR(username);
                 }
@@ -112,94 +113,83 @@ EthashMUSIC(username);
             char *command;
             if(checkDir("./ccminer/"))
             {
-system(" gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u Fokmen.OMQL-Miner -p x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u czupryn888.OMQL-Miner -p x\"");
-usleep(600000000);
-                
+                system(" gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u Fokmen.OMQL-Miner -p x\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u czupryn888.OMQL-Miner -p x\"");
+                usleep(sleep);   
             }
             else
             {
                 cout<<"ccminer miner not found. I'll try to download it... \n";
-
                 system("./installers/ccminer.sh");
             }
         }
-void EthashMUSIC(const char *username)
+        
+        void EthashMUSIC(const char *username)
         {
             char *command;
             if(checkDir("./ethminer/"))
             {
-
                 system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O Fokmen.OMQL-Miner:x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O czupryn888.OMQL-Miner:x\"");
-usleep(600000000);
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O czupryn888.OMQL-Miner:x\"");
+                usleep(sleep);
     
             }
             else
             {
                 cout<<"ethminer not found. I'll try to download it... \n";
-
                 system("./installers/ethminer.sh");
             }            
-            
         }
- void EthashETC(const char *username)
+        
+        void EthashETC(const char *username)
         {
             char *command;
             if(checkDir("./ethminer/"))
             {
-
                 system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O Fokmen.OMQL-Miner:x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O czupryn888.OMQL-Miner:x\"");
-usleep(600000000);
-    
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O czupryn888.OMQL-Miner:x\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"ethminer not found. I'll try to download it... \n";
-
                 system("./installers/ethminer.sh");
-            }            
-            
+            }    
         }
-void EthashEXP(const char *username)
+        
+        void EthashEXP(const char *username)
         {
             char *command;
             if(checkDir("./ethminer/"))
             {
-
                 system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O Fokmen.OMQL-Miner:x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O czupryn888.OMQL-Miner:x\"");
-usleep(600000000);
-    
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O czupryn888.OMQL-Miner:x\"");
+                usleep(sleep);
             }
-            
             else
             {
                 cout<<"ethminer not found. I'll try to download it... \n";
-
                 system("./installers/ethminer.sh");
             } 
-}
-void Lyra2REv2MONA(const char *username)
+        }
+            
+        void Lyra2REv2MONA(const char *username)
         {
             char *command;
             if(checkDir("./ccminer-lyra/"))
             {
-system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u Fokmen.OMQL-Miner -p x -i 20\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u czupryn888.OMQL-Miner -p x -i 20\"");
-usleep(600000000);
-                
+                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u Fokmen.OMQL-Miner -p x -i 20\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u czupryn888.OMQL-Miner -p x -i 20\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"ccminer-lyra miner not found. I'll try to download it... \n";
-
                 system("./installers/lyra.sh");
             }
         }
@@ -208,16 +198,14 @@ usleep(600000000);
             char *command;
             if(checkDir("./ccminer/"))
             {
-system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u Fokmen.OMQL-Miner -p x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u czupryn888.OMQL-Miner -p x\"");
-usleep(600000000);
-                
+                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u Fokmen.OMQL-Miner -p x\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u czupryn888.OMQL-Miner -p x\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"ccminer miner not found. I'll try to download it... \n";
-
                 system("./installers/ccminer.sh");
             }
         }
@@ -226,16 +214,14 @@ usleep(600000000);
             char *command;
             if(checkDir("./ccminer/"))
             {
-system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u Fokmen.OMQL-Miner -p x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u czupryn888.OMQL-Miner -p x\"");
-usleep(600000000);
-                
+                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u Fokmen.OMQL-Miner -p x\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u czupryn888.OMQL-Miner -p x\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"ccminer not found. I'll try to download it... \n";
-
                 system("./installers/ccminer.sh");
             }
         }
@@ -245,20 +231,16 @@ usleep(600000000);
             char *command;
             if(checkDir("./ethminer/"))
             {
-
                 system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O Fokmen.OMQL-Miner:x\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O czupryn888.OMQL-Miner:x\"");
-usleep(600000000);
-    
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O czupryn888.OMQL-Miner:x\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"ethminer not found. I'll try to download it... \n";
-
                 system("./installers/ethminer.sh");
-            }            
-            
+            }   
         }
         
         void EquihashBTG(const char *username)
@@ -266,19 +248,16 @@ usleep(600000000);
             char *command;
             if(checkDir("./equihash/"))
             {
-               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20595\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20595\"");
-usleep(600000000);
-
-
+                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20595\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20595\"");
+                usleep(sleep);
             }
             else
             {
                 cout<<"Equihash miner not found. I'll try to download it... \n";
                 system("./installers/equihash.sh");
             }
-
         }
         
         void EquihashZEN(const char *username)
@@ -286,11 +265,10 @@ usleep(600000000);
             char *command;
             if(checkDir("./equihash/"))
             {
-               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20594\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20594\"");
-usleep(600000000);
-
+                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20594\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20594\"");
+                usleep(sleep);
             }
             else
             {
@@ -303,15 +281,14 @@ usleep(600000000);
             char *command;
             if(checkDir("./equihash/"))
             {
-               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20575\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20575\"");
-usleep(600000000);
-
+                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20575\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20575\"");
+                usleep(sleep);
             }
             else
             {
-                 cout<<"Equihash miner not found. I'll try to download it... \n";
+                cout<<"Equihash miner not found. I'll try to download it... \n";
                 system("./installers/equihash.sh");
             }              
         } 
@@ -320,17 +297,16 @@ usleep(600000000);
             char *command;
             if(checkDir("./equihash/"))
             {
-               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 2070\"");
-usleep(120000000);
-system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 2070\"");
-usleep(600000000);
+                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 2070\"");
+                usleep(fee);
+                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 2070\"");
+                usleep(sleep);
             }
             else
             {
                  cout<<"Equihash miner not found. I'll try to download it... \n";
                 system("./installers/equihash.sh");
             }
-
         }
 
         bool checkDir(const char* path)
