@@ -16,4 +16,4 @@
  Same with ccminer-lyra2v2, but there is one line to change.
 
 <h1>Notes:</h1>
-Building CryptoNight miner might take long time.
+Building CryptoNight miner might take long time. Might seems to stuck on ~70% but its normal.
