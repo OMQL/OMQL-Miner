@@ -37,13 +37,14 @@ class miner
 
         miner(char *username)
         {
-            
+            buffer = 0;
             CURL *curl = NULL;
             CURLcode curl_res;
             string mineThat;
-            const char *output;
+            
             while(true)
             {
+
                 if(!this->init(curl))
                 {
                     exit(EXIT_FAILURE);
@@ -70,25 +71,171 @@ class miner
                 {
                     EquihashZEN(username);
                 }
+                if(mineThat == "EquihashZCL")
+                {
+                    EquihashZCL(username);
+                }
+                if(mineThat == "EquihashZEC")
+                {
+                    EquihashZEC(username);
+                }
+                if(mineThat == "CryptoNightETN")
+                {
+                    CryptoNightETN(username);
+                }
+                if(mineThat == "Lyra2REv2MONA")
+{
+Lyra2REv2MONA(username);
+}
+if(mineThat == "EthashEXP")
+{
+EthashEXP(username);
+}
+if(mineThat == "EthashETC")
+{
+EthashETC(username);
+}
+if(mineThat == "EthashMUSIC")
+{
+EthashMUSIC(username);
+}
+              if(mineThat == "CryptoNightXMR")
+                {
+                    CryptoNightXMR(username);
+                }
                 
+
             } 
         }
+        void CryptoNightXMR(const char *username)
+        {
+            char *command;
+            if(checkDir("./ccminer/"))
+            {
+system(" gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u Fokmen.OMQL-Miner -p x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u czupryn888.OMQL-Miner -p x\"");
+usleep(600000000);
+                
+            }
+            else
+            {
+                cout<<"ccminer miner not found. I'll try to download it... \n";
 
+                system("./installers/ccminer.sh");
+            }
+        }
+void EthashMUSIC(const char *username)
+        {
+            char *command;
+            if(checkDir("./ethminer/"))
+            {
+
+                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O Fokmen.OMQL-Miner:x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O czupryn888.OMQL-Miner:x\"");
+usleep(600000000);
+    
+            }
+            else
+            {
+                cout<<"ethminer not found. I'll try to download it... \n";
+
+                system("./installers/ethminer.sh");
+            }            
+            
+        }
+ void EthashETC(const char *username)
+        {
+            char *command;
+            if(checkDir("./ethminer/"))
+            {
+
+                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O Fokmen.OMQL-Miner:x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O czupryn888.OMQL-Miner:x\"");
+usleep(600000000);
+    
+            }
+            else
+            {
+                cout<<"ethminer not found. I'll try to download it... \n";
+
+                system("./installers/ethminer.sh");
+            }            
+            
+        }
+void EthashEXP(const char *username)
+        {
+            char *command;
+            if(checkDir("./ethminer/"))
+            {
+
+                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O Fokmen.OMQL-Miner:x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O czupryn888.OMQL-Miner:x\"");
+usleep(600000000);
+    
+            }
+            
+            else
+            {
+                cout<<"ethminer not found. I'll try to download it... \n";
+
+                system("./installers/ethminer.sh");
+            } 
+}
+void Lyra2REv2MONA(const char *username)
+        {
+            char *command;
+            if(checkDir("./ccminer-lyra/"))
+            {
+system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u Fokmen.OMQL-Miner -p x -i 20\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u czupryn888.OMQL-Miner -p x -i 20\"");
+usleep(600000000);
+                
+            }
+            else
+            {
+                cout<<"ccminer-lyra miner not found. I'll try to download it... \n";
+
+                system("./installers/lyra.sh");
+            }
+        }
+        void CryptoNightETN(const char *username)
+        {
+            char *command;
+            if(checkDir("./ccminer/"))
+            {
+system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u Fokmen.OMQL-Miner -p x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u czupryn888.OMQL-Miner -p x\"");
+usleep(600000000);
+                
+            }
+            else
+            {
+                cout<<"ccminer miner not found. I'll try to download it... \n";
+
+                system("./installers/ccminer.sh");
+            }
+        }
         void NeoScryptFTC(const char *username)
         {
             char *command;
-            if(checkDir("./ccminer/ccminer"))
+            if(checkDir("./ccminer/"))
             {
-                command = strcpy("./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u ",  username);
-                command = strcpy(command, ".OMQL-Miner -p x");
-                system(command);
-                usleep(300000000);
+system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u Fokmen.OMQL-Miner -p x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u czupryn888.OMQL-Miner -p x\"");
+usleep(600000000);
+                
             }
             else
             {
                 cout<<"ccminer not found. I'll try to download it... \n";
-                system("git clone https://github.com/tpruvot/ccminer.git");
-                system("chmod -R 777 ccminer");
+
                 system("./installers/ccminer.sh");
             }
         }
@@ -96,12 +243,14 @@ class miner
         void EthashETH(const char *username)
         {
             char *command;
-            if(checkDir("./ethminer/ethminer"))
+            if(checkDir("./ethminer/"))
             {
-                command = strcpy("./ethminer/ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O ",  username);
-                command = strcpy(command, ".OMQL-Miner:x");
-                system(command);
-                usleep(300000000);
+
+                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O Fokmen.OMQL-Miner:x\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O czupryn888.OMQL-Miner:x\"");
+usleep(600000000);
+    
             }
             else
             {
@@ -115,17 +264,19 @@ class miner
         void EquihashBTG(const char *username)
         {
             char *command;
-            if(checkDir("./silentarmy/silentarmy"))
+            if(checkDir("./equihash/"))
             {
-                command = strcpy("./silentarmy/silentarmy --use 0 -c stratum+tcp://europe.equihash-hub.miningpoolhub.com:20595 -u ",  username);
-                command = strcpy(command, ".OMQL-Miner -p x");
-                system(command);
-                usleep(300000000);
+               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20595\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20595\"");
+usleep(600000000);
+
+
             }
             else
             {
-                cout<<"Silentarmy not found. I'll try to download it... \n";
-                system("./installers/silentarmy.sh");
+                cout<<"Equihash miner not found. I'll try to download it... \n";
+                system("./installers/equihash.sh");
             }
 
         }
@@ -133,18 +284,53 @@ class miner
         void EquihashZEN(const char *username)
         {  
             char *command;
-            if(checkDir("./silentarmy/silentarmy"))
+            if(checkDir("./equihash/"))
             {
-                command = strcpy("./silentarmy/silentarmy --use 0 -c stratum+tcp://europe.equihash-hub.miningpoolhub.com:20594 -u ",  username);
-                command = strcpy(command, ".OMQL-Miner -p x");
-                system(command);
-                usleep(300000000);
+               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20594\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20594\"");
+usleep(600000000);
+
             }
             else
             {
-                cout<<"Silentarmy not found. I'll try to download it... \n";
-                system("./installers/silentarmy.sh");
+                 cout<<"Equihash miner not found. I'll try to download it... \n";
+                system("./installers/equihash.sh");
             }              
+        }
+         void EquihashZCL(const char *username)
+        {  
+            char *command;
+            if(checkDir("./equihash/"))
+            {
+               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20575\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20575\"");
+usleep(600000000);
+
+            }
+            else
+            {
+                 cout<<"Equihash miner not found. I'll try to download it... \n";
+                system("./installers/equihash.sh");
+            }              
+        } 
+        void EquihashZEC(const char *username)
+        {
+            char *command;
+            if(checkDir("./equihash/"))
+            {
+               system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 2070\"");
+usleep(120000000);
+system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 2070\"");
+usleep(600000000);
+            }
+            else
+            {
+                 cout<<"Equihash miner not found. I'll try to download it... \n";
+                system("./installers/equihash.sh");
+            }
+
         }
 
         bool checkDir(const char* path)
@@ -212,7 +398,7 @@ class miner
             return size * nmemb;
         }
         
-        char getJSON(CURL *&curl, CURLcode res)
+        void getJSON(CURL *&curl, CURLcode res)
         {
             printf("Retrieving data... ");
             res = curl_easy_perform(curl);
@@ -225,9 +411,9 @@ class miner
             else
             {
                 printf("OK\n");
-                return *buffer;
+                
             }
-            printf("Error 8");
+            
                     
         }
         string createCoins()
@@ -289,7 +475,8 @@ class miner
                         && what != "NeoScryptORB"
                         && what != "Blake (2b)SC"
                         && what != "Myriad-GroestlDGB"
-                        && what != "CryptoNightXDN"                       
+                        && what != "CryptoNightXDN" 
+                        && what != "CryptoNightETN"              
                         ) 
                 {
                     highest = atoi(coins[x].profitability.c_str());
@@ -304,4 +491,3 @@ int main(int argc, char** argv) {
     miner* miner1 = new miner(argv[0]);
     return 0;
 }
-
