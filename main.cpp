@@ -11,7 +11,6 @@
 #include <string.h>
 #include <curl/curl.h>
 #include <iostream>
-#include <jansson.h>
 #include <stdlib.h> 
 #include <unistd.h>
 #include <dirent.h>
