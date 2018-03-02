@@ -10,3 +10,5 @@ MONA: Fokmen
 EXP:  Fokmen
 MUSIC:Fokmen
 DCR:  DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog
+SC:   Fokmen
+
