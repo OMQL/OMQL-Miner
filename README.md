@@ -17,6 +17,44 @@
  
  <code>  cd OMQL-Miner</code><br>
  <code> g++ main.cpp -o omql_miner -lcurl</code>
+  <h1>
+ Config:</h1>
+ OMQL Miner has two configuration files: users.txt and pools.txt<br>
+ In users.txt you must specify your wallet addresses or username. Example:
+
+ETH:  Fokmen<br>
+ETC:  Fokmen<br>
+FTC:  Fokmen<br>
+BTG:  Fokmen<br>
+ZEN:  Fokmen<br>
+ZCL:  Fokmen<br>
+ZEC:  Fokmen<br>
+ETN:  Fokmen<br>
+MONA: Fokmen<br>
+EXP:  Fokmen<br>
+MUSIC:Fokmen<br>
+DCR: DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog<br>
+
+ <br>
+ Remember: there must always be six characters before the username or wallet address (including spaces and ":")<br><br>
+ In pools.txt you must specify pools for mining, as example:
+
+ 
+ETH:  europe.ethash-hub.miningpoolhub.com:17020<br>
+DCR:  dcr.coinmine.pl:2222<br>
+XMR:  europe.cryptonight-hub.miningpoolhub.com:20580<br>
+MUSIC:europe.ethash-hub.miningpoolhub.com:20585<br>
+ETC:  europe.ethash-hub.miningpoolhub.com:20555<br>
+EXP:  europe.ethash-hub.miningpoolhub.com:20565<br>
+MONA: hub.miningpoolhub.com:20593<br>
+ETN:  europe.cryptonight-hub.miningpoolhub.com:20596<br>
+FTC:  hub.miningpoolhub.com:20510<br>
+BTG:  us-east.equihash-hub.miningpoolhub.com:20595<br>
+ZEN:  us-east.equihash-hub.miningpoolhub.com:20594<br>
+ZCL:  us-east.equihash-hub.miningpoolhub.com:20575<br>
+ZEC:  us-east.equihash-hub.miningpoolhub.com:20570<br>
+<br>
+Same here - always six characters before pool address.
  <h1>
  Usage:</h1>
   <code>./omql_miner</code>
@@ -26,7 +64,3 @@
  When building ccminer:
  nvcc fatal : Unsupported gpu architecture 'compute_20' <br>
  Open <code>ccminer/makefile.am</code> and delete <code>gencode arch=compute_20,code=sm_20</code>. There should be three lines with this code. Then compile ccminer maually using <code>./autogen.sh</code>, <code>./configure</code> and <code>./build.sh</code>
- Same with ccminer-lyra2v2, but there is one line to change.
-
-<h1>Notes:</h1>
-Building CryptoNight miner might take long time. Seems to stuck on ~70% but its normal.
