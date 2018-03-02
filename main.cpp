@@ -14,6 +14,9 @@
 #include <stdlib.h> 
 #include <unistd.h>
 #include <dirent.h>
+#include <fstream>
+#include <sys/stat.h>
+#include <sstream>
 
 
 #define URL "https://whattomine.com/coins.json"
@@ -22,7 +25,16 @@ using namespace std;
 static char err_buffer[CURL_ERROR_SIZE];
 char *buffer;
 #define  sleep 600000000
-#define fee  120000000
+#define fee    180000000
+
+template<typename T>
+std::string to_string(const T& obj)
+{
+    std::stringstream ss;
+    ss << obj;
+    return ss.str();
+}
+
 class coin
 {
     public:
@@ -34,295 +46,353 @@ class coin
 class miner
 {
     public:
-
-        miner(char *username)
+        miner()
         {
             buffer = 0;
             CURL *curl = NULL;
             CURLcode curl_res;
             string mineThat;
-            
+            string username;
+            string pool;
+
             while(true)
             {
-
                 if(!this->init(curl))
                 {
                     exit(EXIT_FAILURE);
                 }
-           
-                this->getJSON(curl, curl_res);
-                mineThat = createCoins();
-              
-                cout <<"Most profitable algorithm is: " <<mineThat<<"\n";
-                if(mineThat == "NeoScryptFTC")
-                {
-                    NeoScryptFTC(username);
-                   
-                }
-                if(mineThat == "EthashETH")
-                {
-                    EthashETH(username);
-                }
-                if(mineThat == "EquihashBTG")
-                {
-                    EquihashBTG(username);
-                }
-                if(mineThat == "EquihashZEN")
-                {
-                    EquihashZEN(username);
-                }
-                if(mineThat == "EquihashZCL")
-                {
-                    EquihashZCL(username);
-                }
-                if(mineThat == "EquihashZEC")
-                {
-                    EquihashZEC(username);
-                }
-                if(mineThat == "CryptoNightETN")
-                {
-                    CryptoNightETN(username);
-                }
-                if(mineThat == "Lyra2REv2MONA")
-                {
-                    Lyra2REv2MONA(username);
-                }
-                if(mineThat == "EthashEXP")
-                {
-                    EthashEXP(username);
-                }
-                if(mineThat == "EthashETC")
-                {
-                    EthashETC(username);
-                }
-                if(mineThat == "EthashMUSIC")
-                {
-                    EthashMUSIC(username);
-                }
-                if(mineThat == "CryptoNightXMR")
-                {
-                    CryptoNightXMR(username);
-                }
-                
+		this->getJSON(curl, curl_res);
+		mineThat = this->createCoins();
 
-            } 
+		cout <<"Most profitable coin is: " <<mineThat<<"\n";
+		if(mineThat == "FTC")
+		{
+		    this->mineFTC();   
+		}
+		if(mineThat == "ETH")
+		{
+		    this->mineETH();
+		}
+		if(mineThat == "BTG")
+		{
+		    this->mineBTG();
+		}
+		if(mineThat == "ZEN")
+		{
+		    this->mineZEN();
+		}
+		if(mineThat == "ZCL")
+		{
+		    this->mineZCL();
+		}
+		if(mineThat == "ZEC")
+		{
+		    this->mineZEC();
+		}
+		if(mineThat == "ETN")
+		{
+		    this->mineETN();
+		}
+		if(mineThat == "MONA")
+		{
+		    this->mineMONA();
+		}
+		if(mineThat == "EXP")
+		{
+		    this->mineEXP();
+		}
+		if(mineThat == "ETC")
+		{
+		    this->mineETC();
+		}
+		if(mineThat == "MUSIC")
+		{
+		    this->mineMUSIC();
+		}
+		if(mineThat == "XMR")
+		{
+		    this->mineXMR();
+		}
+	    }
         }
-        void CryptoNightXMR(const char *username)
+        
+
+        void mineXMR()
         {
-            char *command;
-            if(checkDir("./ccminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ccminer"))
             {
-                system(" gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u Fokmen.OMQL-Miner -p x\"");
+                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u Fokmen.OMQL-Miner -p x\"";
+		const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20580 -u czupryn888.OMQL-Miner -p x\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer/ccminer -a cryptonight -o stratum+tcp://"+getPool("XMR")+" -u "+getUsername("XMR")+".OMQL-Miner -p x\"";
+		const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);   
             }
             else
             {
-                cout<<"ccminer miner not found. I'll try to download it... \n";
-                system("./installers/ccminer.sh");
+                system("./firstrun.sh");
             }
         }
         
-        void EthashMUSIC(const char *username)
+        void mineMUSIC()
         {
-            char *command;
-            if(checkDir("./ethminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ethdcrminer64"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O Fokmen.OMQL-Miner:x\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20585 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20585 -O czupryn888.OMQL-Miner:x\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("MUSIC")+" -ewal "+getUsername("MUSIC")+".OMQL_Miner -eworker "+getUsername("MUSIC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
-    
             }
             else
             {
-                cout<<"ethminer not found. I'll try to download it... \n";
-                system("./installers/ethminer.sh");
+                system("./firstrun.sh");
             }            
         }
         
-        void EthashETC(const char *username)
+        void mineETC()
         {
-            char *command;
-            if(checkDir("./ethminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ethdcrminer64"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O Fokmen.OMQL-Miner:x\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20555 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20555 -O czupryn888.OMQL-Miner:x\"");
+		command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETC")+" -ewal "+getUsername("ETC")+".OMQL_Miner -eworker "+getUsername("ETC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                cout<<"ethminer not found. I'll try to download it... \n";
-                system("./installers/ethminer.sh");
+                system("./firstrun.sh");
             }    
         }
         
-        void EthashEXP(const char *username)
+        void mineEXP()
         {
-            char *command;
-            if(checkDir("./ethminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ethdcrminer64"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O Fokmen.OMQL-Miner:x\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20565 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20565 -O czupryn888.OMQL-Miner:x\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("EXP")+" -ewal "+getUsername("EXP")+".OMQL_Miner -eworker "+getUsername("EXP")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                cout<<"ethminer not found. I'll try to download it... \n";
-                system("./installers/ethminer.sh");
+                system("./firstrun.sh");
             } 
         }
             
-        void Lyra2REv2MONA(const char *username)
+        void mineMONA()
         {
-            char *command;
-            if(checkDir("./ccminer-lyra/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ccminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u Fokmen.OMQL-Miner -p x -i 20\"");
+                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a Lyra2REv2 -o stratum+tcp://hub.miningpoolhub.com:205930 -u Fokmen.OMQL-Miner -p x\"";
+		const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer-lyra/ccminer -a cryptonight -o stratum+tcp://hub.miningpoolhub.com:20593 -u czupryn888.OMQL-Miner -p x -i 20\"");
-                usleep(sleep);
+                command = "gnome-terminal -e \"timeout --k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer -a Lyra2REv2 -o stratum+tcp://"+getPool("MONA")+" -u "+getUsername("MONA")+".OMQL-Miner -p x\"";
+		const char* comm = command.c_str();
+                system(comm);
+                usleep(sleep); 
             }
             else
             {
-                cout<<"ccminer-lyra miner not found. I'll try to download it... \n";
-                system("./installers/lyra.sh");
+                system("./firstrun.sh");
             }
         }
-        void CryptoNightETN(const char *username)
-        {
-            char *command;
-            if(checkDir("./ccminer/"))
+        void mineETN()
+         {
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ccminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u Fokmen.OMQL-Miner -p x\"");
+                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u Fokmen.OMQL-Miner -p x\"";
+		const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a cryptonight -o stratum+tcp://europe.cryptonight-hub.miningpoolhub.com:20596 -u czupryn888.OMQL-Miner -p x\"");
-                usleep(sleep);
+                command = "gnome-terminal -e \"timeout --k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer -a cryptonight -o stratum+tcp://"+getPool("ETN")+" -u "+getUsername("ETN")+".OMQL-Miner -p x\"";
+		const char* comm = command.c_str();
+                system(comm);
+                usleep(sleep); 
             }
             else
             {
-                cout<<"ccminer miner not found. I'll try to download it... \n";
-                system("./installers/ccminer.sh");
+                system("./firstrun.sh");
             }
         }
-        void NeoScryptFTC(const char *username)
+        void mineFTC()
         {
-            char *command;
-            if(checkDir("./ccminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ccminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u Fokmen.OMQL-Miner -p x\"");
+                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u Fokmen.OMQL-Miner -p x\"";
+		const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./ccminer/ccminer -a neoscrypt -o stratum+tcp://hub.miningpoolhub.com:20510 -u czupryn888.OMQL-Miner -p x\"");
-                usleep(sleep);
+                command = "gnome-terminal -e \"timeout --k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer -a neoscrypt -o stratum+tcp://"+getPool("FTC")+" -u "+getUsername("FTC")+".OMQL-Miner -p x\"";
+		const char* comm = command.c_str();
+                system(comm);
+                usleep(sleep); 
             }
             else
             {
-                cout<<"ccminer not found. I'll try to download it... \n";
-                system("./installers/ccminer.sh");
+                system("./firstrun.sh");
             }
         }
-        
-        void EthashETH(const char *username)
+        void mineETH()
         {
-            char *command;
-            if(checkDir("./ethminer/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./ethdcrminer64"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O Fokmen.OMQL-Miner:x\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:17020 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ethminer -G -S europe.ethash-hub.miningpoolhub.com:20535 -O czupryn888.OMQL-Miner:x\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETH")+" -ewal "+getUsername("ETH")+".OMQL_Miner -eworker "+getUsername("ETH")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
+                usleep(sleep);
+
+            }
+            else
+            {
+                system("./firstrun.sh");
+            }   
+        } 
+        void mineBTG()
+        {
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./bminer"))
+            {
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20595\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
+                usleep(fee);
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("BTG")+".OMQL-Miner@"+getPool("BTG")+"\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                cout<<"ethminer not found. I'll try to download it... \n";
-                system("./installers/ethminer.sh");
+                system("./firstrun.sh");
             }   
         }
-        
-        void EquihashBTG(const char *username)
-        {
-            char *command;
-            if(checkDir("./equihash/"))
+        void mineZEN()
+        {      
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./bminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20595\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20594\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20595\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEN")+".OMQL-Miner@"+getPool("ZEN")+"\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                cout<<"Equihash miner not found. I'll try to download it... \n";
-                system("./installers/equihash.sh");
-            }
+                system("./firstrun.sh");
+            }   
         }
-        
-        void EquihashZEN(const char *username)
+        void mineZCL()
         {  
-            char *command;
-            if(checkDir("./equihash/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./bminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20594\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20575\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20594\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZCL")+".OMQL-Miner@"+getPool("ZCL")+"\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                 cout<<"Equihash miner not found. I'll try to download it... \n";
-                system("./installers/equihash.sh");
-            }              
+                system("./firstrun.sh");
+            }   
         }
-         void EquihashZCL(const char *username)
-        {  
-            char *command;
-            if(checkDir("./equihash/"))
-            {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 20575\"");
-                usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 20575\"");
-                usleep(sleep);
-            }
-            else
-            {
-                cout<<"Equihash miner not found. I'll try to download it... \n";
-                system("./installers/equihash.sh");
-            }              
-        } 
-        void EquihashZEC(const char *username)
+        void mineZEC()
         {
-            char *command;
-            if(checkDir("./equihash/"))
+            string command;
+            string command_fee;
+            double timeout_fee = fee / 60000000;
+            double timeout = sleep / 60000000;
+            if(checkDir("./bminer"))
             {
-                system("gnome-terminal -e \"timeout -k 3m 2m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user Fokmen.OMQL-Miner --pass z --port 2070\"");
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20570\" && exit";
+                const char* comm_fee = command_fee.c_str();
+                system(comm_fee);
                 usleep(fee);
-                system("gnome-terminal -e \"timeout -k 15m 10m ./equihash/miner --server europe.equihash-hub.miningpoolhub.com --user czupryn888.OMQL-Miner --pass z --port 2070\"");
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEC")+".OMQL-Miner@"+getPool("ZEC")+"\" && exit";
+                const char* comm = command.c_str();
+                system(comm);
                 usleep(sleep);
             }
             else
             {
-                 cout<<"Equihash miner not found. I'll try to download it... \n";
-                system("./installers/equihash.sh");
-            }
+                system("./firstrun.sh");
+            }   
         }
-
-        bool checkDir(const char* path)
+        bool checkDir(const string path)
         {
-            if(path == NULL) return false;
-            DIR *dir;
-            dir = opendir(path);
-            if(dir != NULL)
-            {
-                closedir(dir);
-                return true;
-            }
-            return false;
+            struct stat buffer;
+            return (stat(path.c_str(), &buffer) == 0);
         }
         bool init(CURL *&curl)
         {
-
             CURLcode res;
             curl = curl_easy_init();
             if(curl == NULL)
@@ -451,18 +521,51 @@ class miner
                         && what != "Blake (2b)SC"
                         && what != "Myriad-GroestlDGB"
                         && what != "CryptoNightXDN" 
-                        && what != "CryptoNightETN"              
+                        && what != "CryptoNightETN"   
+			            && what != "CryptoNightDCY"   
+                        && what != "EthashELLA"          
                         ) 
                 {
                     highest = atoi(coins[x].profitability.c_str());
-                    mine = coins[x].algorithm + coins[x].tag;
+                    mine =  coins[x].tag;
                 }
             }
             return mine;
         }
+        string getUsername(string algo)
+        {
+            ifstream names;
+            string user;
+            names.open("users.txt");
+            while(getline(names, user))
+            {
+                if(user.find(algo, 0))
+                {
+                    user.erase(0, 5);
+                    names.close();
+                    return user;
+		}
+            }
+	}
+        string getPool(string algo)
+        {
+            ifstream pools;
+            string pool;
+            pools.open("pools.txt");
+            while(getline(pools, pool))
+            {
+                if(pool.find(algo) != -1)
+                {
+
+                    pool.erase(0, 6);
+                    pools.close();
+                    return pool;
+		}
+            }
+        }
 };
 
 int main(int argc, char** argv) {
-    miner* miner1 = new miner(argv[0]);
+    miner* miner1 = new miner();
     return 0;
 }
