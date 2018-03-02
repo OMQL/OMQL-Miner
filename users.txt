@@ -9,4 +9,4 @@ ETN:  Fokmen
 MONA: Fokmen
 EXP:  Fokmen
 MUSIC:Fokmen
-CDR:  DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog
+DCR:  DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog
