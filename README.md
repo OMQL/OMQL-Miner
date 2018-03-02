@@ -57,7 +57,7 @@ ZEC:  us-east.equihash-hub.miningpoolhub.com:20570<br>
 Same here - always six characters before pool address.
  <h1>
  Usage:</h1>
-  <code>./omql_miner</code>
+  <code>sudo ./omql_miner</code>
  
  
  <h1>Known issues:  </h1>
