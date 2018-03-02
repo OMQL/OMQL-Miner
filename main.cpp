@@ -129,7 +129,7 @@ class miner
 		const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer/ccminer -a cryptonight -o stratum+tcp://"+getPool("XMR")+" -u "+getUsername("XMR")+".OMQL-Miner -p x\"";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ccminer -a cryptonight -o stratum+tcp://"+getPool("XMR")+" -u "+getUsername("XMR")+".OMQL-Miner -p x\"";
 		const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);   
