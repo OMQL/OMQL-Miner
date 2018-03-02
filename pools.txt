@@ -11,3 +11,4 @@ BTG:  us-east.equihash-hub.miningpoolhub.com:20595
 ZEN:  us-east.equihash-hub.miningpoolhub.com:20594
 ZCL:  us-east.equihash-hub.miningpoolhub.com:20575
 ZEC:  us-east.equihash-hub.miningpoolhub.com:20570
+SC:   hub.miningpoolhub.com:20550
