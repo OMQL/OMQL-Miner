@@ -1,0 +1,13 @@
+ETH:  europe.ethash-hub.miningpoolhub.com:17020
+DCR:  dcr.coinmine.pl:2222
+XMR:  europe.cryptonight-hub.miningpoolhub.com:20580
+MUSIC:europe.ethash-hub.miningpoolhub.com:20585
+ETC:  europe.ethash-hub.miningpoolhub.com:20555
+EXP:  europe.ethash-hub.miningpoolhub.com:20565
+MONA: hub.miningpoolhub.com:20593
+ETN:  europe.cryptonight-hub.miningpoolhub.com:20596
+FTC:  hub.miningpoolhub.com:20510
+BTG:  us-east.equihash-hub.miningpoolhub.com:20595
+ZEN:  us-east.equihash-hub.miningpoolhub.com:20594
+ZCL:  us-east.equihash-hub.miningpoolhub.com:20575
+ZEC:  us-east.equihash-hub.miningpoolhub.com:20570
