@@ -6,11 +6,9 @@
 
 - Supported altcoins: ETH, ETC, FTC, BTG, ZEN, ZCL, ZEC, ETN, MONA, EXP, MUSIC;
 
-- Compiling miners from sources for the best performance (if possible);
-
 - 100% open source;
 
-- 2,5% dev fee;
+- 5% dev fee;
 
 - Tested on Ubuntu 16.04 LTS;
 
@@ -21,7 +19,7 @@
  <code> g++ main.cpp -o omql_miner -lcurl</code>
  <h1>
  Usage:</h1>
-  <code>./omql_miner Username</code>
+  <code>./omql_miner</code>
  
  
  <h1>Known issues:  </h1>
