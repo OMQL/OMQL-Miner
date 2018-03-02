@@ -24,8 +24,8 @@
 using namespace std;
 static char err_buffer[CURL_ERROR_SIZE];
 char *buffer;
-#define  sleep 600000000
-#define fee    18000000
+#define  sleep 3300000000
+#define fee    180000000
 
 template<typename T>
 std::string to_string(const T& obj)
@@ -148,11 +148,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./ethdcrminer64"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20585 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20585 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://hub.miningpoolhub.com:20550 -dwal Fokmen.OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("MUSIC")+" -ewal "+getUsername("MUSIC")+".OMQL_Miner -eworker "+getUsername("MUSIC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("MUSIC")+" -ewal "+getUsername("MUSIC")+".OMQL_Miner -eworker "+getUsername("MUSIC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("SC")+" -dwal "+getUsername("SC")+".OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -171,11 +171,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./ethdcrminer64"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20555 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20555 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://hub.miningpoolhub.com:20550 -dwal Fokmen.OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-		command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETC")+" -ewal "+getUsername("ETC")+".OMQL_Miner -eworker "+getUsername("ETC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+		command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETC")+" -ewal "+getUsername("ETC")+".OMQL_Miner -eworker "+getUsername("ETC")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("SC")+" -dwal "+getUsername("SC")+".OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -194,11 +194,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./ethdcrminer64"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20565 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:20565 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://hub.miningpoolhub.com:20550 -dwal Fokmen.OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("EXP")+" -ewal "+getUsername("EXP")+".OMQL_Miner -eworker "+getUsername("EXP")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("EXP")+" -ewal "+getUsername("EXP")+".OMQL_Miner -eworker "+getUsername("EXP")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("SC")+" -dwal "+getUsername("SC")+".OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -217,7 +217,7 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./ccminer"))
             {
-                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a Lyra2REv2 -o stratum+tcp://hub.miningpoolhub.com:205930 -u Fokmen.OMQL-Miner -p x\"";
+                command_fee = " gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m ./ccminer -a Lyra2REv2 -o stratum+tcp://hub.miningpoolhub.com:20593 -u Fokmen.OMQL-Miner -p x\"";
 		const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
@@ -283,15 +283,14 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./ethdcrminer64"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:17020 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://dcr.coinmine.pl:2222 -dwal DscozcMjuWLRSBDaiKV8pzpvvrj3kgzviog.OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./ethdcrminer64 -epool europe.ethash-hub.miningpoolhub.com:17020 -ewal Fokmen.OMQL_Miner -eworker Fokmen.OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://hub.miningpoolhub.com:20550 -dwal Fokmen.OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETH")+" -ewal "+getUsername("ETH")+".OMQL_Miner -eworker "+getUsername("ETH")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("DCR")+" -dwal "+getUsername("DCR")+".OMQL_Miner -dpsw x -dcoin dcr\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./ethdcrminer64 -epool "+getPool("ETH")+" -ewal "+getUsername("ETH")+".OMQL_Miner -eworker "+getUsername("ETH")+".OMQL_Miner -esm 2 -epsw x -allcoins 1 -dpool stratum+tcp://"+getPool("SC")+" -dwal "+getUsername("SC")+".OMQL_Miner -dpsw x -dcoin sc\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
-
             }
             else
             {
@@ -306,11 +305,12 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./bminer"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20595\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@europe.equihash-hub.miningpoolhub.com:20595\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("BTG")+".OMQL-Miner@"+getPool("BTG")+"\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./bminer -uri stratum+ssl://"+getUsername("BTG")+".OMQL-Miner@"+getPool("BTG")+"\" && exit";
+
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -328,11 +328,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./bminer"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20594\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@europe.equihash-hub.miningpoolhub.com:20594\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEN")+".OMQL-Miner@"+getPool("ZEN")+"\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEN")+".OMQL-Miner@"+getPool("ZEN")+"\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -350,11 +350,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./bminer"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20575\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@europe.equihash-hub.miningpoolhub.com:20575\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZCL")+".OMQL-Miner@"+getPool("ZCL")+"\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZCL")+".OMQL-Miner@"+getPool("ZCL")+"\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -372,11 +372,11 @@ class miner
             double timeout = sleep / 60000000;
             if(checkDir("./bminer"))
             {
-                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@us-east.equihash-hub.miningpoolhub.com:20570\" && exit";
+                command_fee = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://Fokmen.OMQL-Miner@europe.equihash-hub.miningpoolhub.com:20570\" && exit";
                 const char* comm_fee = command_fee.c_str();
                 system(comm_fee);
                 usleep(fee);
-                command = "gnome-terminal -e \"timeout -k "+to_string(timeout_fee+2)+"m "+to_string(timeout_fee)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEC")+".OMQL-Miner@"+getPool("ZEC")+"\" && exit";
+                command = "gnome-terminal -e \"timeout -k "+to_string(timeout+2)+"m "+to_string(timeout)+"m  ./bminer -uri stratum+ssl://"+getUsername("ZEC")+".OMQL-Miner@"+getPool("ZEC")+"\" && exit";
                 const char* comm = command.c_str();
                 system(comm);
                 usleep(sleep);
@@ -522,7 +522,7 @@ class miner
                         && what != "Myriad-GroestlDGB"
                         && what != "CryptoNightXDN" 
                         && what != "CryptoNightETN"   
-			            && what != "CryptoNightDCY"   
+			&& what != "CryptoNightDCY"   
                         && what != "EthashELLA"          
                         ) 
                 {
@@ -531,6 +531,7 @@ class miner
                 }
             }
             return mine;
+
         }
         string getUsername(string algo)
         {
@@ -541,7 +542,7 @@ class miner
             {
                 if(user.find(algo, 0))
                 {
-                    user.erase(0, 5);
+                    user.erase(0, 6);
                     names.close();
                     return user;
 		}
