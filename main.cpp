@@ -24,8 +24,8 @@
 using namespace std;
 static char err_buffer[CURL_ERROR_SIZE];
 char *buffer;
-#define  sleep 3300000000
-#define fee    180000000
+#define  sleep 7200000000
+#define fee     180000000
 
 template<typename T>
 std::string to_string(const T& obj)
