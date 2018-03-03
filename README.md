@@ -8,7 +8,7 @@
 
 - 100% open source;
 
-- 5% dev fee;
+- 2,5% dev fee;
 
 - Tested on Ubuntu 16.04 LTS;
 
