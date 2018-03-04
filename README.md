@@ -13,6 +13,7 @@
 - Tested on Ubuntu 16.04 LTS;
 <h1>Dependencies:</h1>
 libcurl4-openssl-dev
+automake
 
 
 <h1>Installing:</h1>
