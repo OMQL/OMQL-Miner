@@ -11,6 +11,9 @@
 - 2,5% dev fee;
 
 - Tested on Ubuntu 16.04 LTS;
+<h1>Dependencies:</h1>
+libcurl4-openssl-dev
+
 
 <h1>Installing:</h1>
  <code>git clone https://github.com/OMQL/OMQL-Miner.git</code>
